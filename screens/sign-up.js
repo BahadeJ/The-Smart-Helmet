@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Modal,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -19,6 +21,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false); // State for Modal visibility
   const navigation = useNavigation();
 
   const handleSignUp = async () => {
@@ -33,11 +36,9 @@ const SignUp = () => {
     }
 
     try {
-      // Create user with Firebase Auth
       const userCredential = await auth().createUserWithEmailAndPassword(email, password);
       const user = userCredential.user;
 
-      // Save additional user details in Firestore
       await firestore().collection('users').doc(user.uid).set({
         username,
         fullName,
@@ -57,7 +58,7 @@ const SignUp = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require('../assets/smart_helmet_logo.png')} // Replace with your logo's path
+        source={require('../assets/smart_helmet_logo.png')}
         style={styles.logo}
       />
       <Text style={styles.title}>CREATE ACCOUNT</Text>
@@ -108,7 +109,9 @@ const SignUp = () => {
         >
           {isChecked && <View style={styles.checkboxTick} />}
         </TouchableOpacity>
-        <Text style={styles.checkboxLabel}>ACCEPT TERMS AND CONDITIONS</Text>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Text style={styles.checkboxLabel}>ACCEPT TERMS AND CONDITIONS</Text>
+        </TouchableOpacity>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
@@ -121,6 +124,31 @@ const SignUp = () => {
           LOGIN
         </Text>
       </Text>
+
+      {/* Terms and Conditions Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <ScrollView>
+              <Text style={styles.modalTitle}>Terms and Conditions</Text>
+              <Text style={styles.modalText}>
+              By using the Smart Helmet App, you agree to its Terms and Conditions. The App provides safety features like real-time monitoring, helmet connectivity, navigation, and user insights, but it is not a substitute for responsible riding. You are responsible for lawful and distraction-free use, ensuring your helmet is connected and functional. The App collects data, such as location and emergency contacts, as outlined in our Privacy Policy. It is provided "as is," and we are not liable for accidents, damages, or misuse. Access may be suspended for violations, and continued use after updates signifies acceptance. 
+              </Text>
+            </ScrollView>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.closeButtonText}>CLOSE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -211,6 +239,39 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   loginLink: {
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    margin: 20,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    maxHeight: '80%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 14,
+    color: '#555',
+  },
+  closeButton: {
+    marginTop: 20,
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: '#FFD700',
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#000',
   },

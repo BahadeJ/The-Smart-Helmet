@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { LineChart, PieChart } from 'react-native-chart-kit';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
+import BottomTab from '../components/bottom-tab';
 
 const Dashboard = () => {
   // Example data for charts
@@ -40,59 +41,56 @@ const Dashboard = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Header Section */}
-      <SafeAreaView style={styles.header}>
-        <Icon name="chevron-back" size={24} color="#000" />
-        <Text style={styles.date}>08.20.2024 - 4:00 PM</Text>
-        <Icon name="chevron-forward" size={24} color="#000" />
-      </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {/* Header Section */}
+        <View style={styles.header}>
+          <Icon name="chevron-back" size={24} color="#000" />
+          <Text style={styles.date}>08.20.2024 - 4:00 PM</Text>
+          <Icon name="chevron-forward" size={24} color="#000" />
+        </View>
 
-      {/* Brain Wave Activity Section */}
-      <Text style={styles.sectionTitle}>BRAIN WAVE ACTIVITY</Text>
-      <LineChart
-        data={lineChartData}
-        width={300} // Adjust according to your layout
-        height={200}
-        chartConfig={chartConfig}
-        style={styles.chart}
-      />
+        {/* Brain Wave Activity Section */}
+        <Text style={styles.sectionTitle}>BRAIN WAVE ACTIVITY</Text>
+        <LineChart
+          data={lineChartData}
+          width={300} // Adjust according to your layout
+          height={200}
+          chartConfig={chartConfig}
+          style={styles.chart}
+        />
 
-      {/* Rhythm Section */}
-      <Text style={styles.sectionTitle}>RHYTHM</Text>
-      <PieChart
-        data={pieChartData}
-        width={300} // Adjust according to your layout
-        height={180}
-        chartConfig={chartConfig}
-        accessor="percentage"
-        backgroundColor="transparent"
-        paddingLeft="15"
-        absolute
-      />
+        {/* Rhythm Section */}
+        <Text style={styles.sectionTitle}>RHYTHM</Text>
+        <PieChart
+          data={pieChartData}
+          width={300} // Adjust according to your layout
+          height={180}
+          chartConfig={chartConfig}
+          accessor="percentage"
+          backgroundColor="transparent"
+          paddingLeft="15"
+          absolute
+        />
 
-      {/* Concentration Section */}
-      <Text style={styles.sectionTitle}>CONCENTRATION</Text>
-      <LineChart
-        data={concentrationData}
-        width={300}
-        height={200}
-        chartConfig={chartConfig}
-        style={styles.chart}
-      />
+        {/* Concentration Section */}
+        <Text style={styles.sectionTitle}>CONCENTRATION</Text>
+        <LineChart
+          data={concentrationData}
+          width={300}
+          height={200}
+          chartConfig={chartConfig}
+          style={styles.chart}
+        />
 
-      {/* State Section */}
-      <Text style={styles.sectionTitle}>STATE</Text>
-      <Text style={styles.stateText}>NON - DROWSY</Text>
+        {/* State Section */}
+        <Text style={styles.sectionTitle}>STATE</Text>
+        <Text style={styles.stateText}>NON - DROWSY</Text>
+      </ScrollView>
 
       {/* Footer Navigation */}
-      <View style={styles.footer}>
-        <Icon name="settings-outline" size={24} color="#000" />
-        <Icon name="stats-chart-outline" size={24} color="#000" />
-        <Icon name="person-outline" size={24} color="#000" />
-        <Icon name="menu-outline" size={24} color="#000" />
-      </View>
-    </ScrollView>
+      <BottomTab activeTab="Dashboard"/>
+    </SafeAreaView>
   );
 };
 
@@ -124,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     marginVertical: 10,
+    marginLeft: 40,
   },
   chart: {
     alignSelf: 'center',

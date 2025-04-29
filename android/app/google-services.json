@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289456279446",
+    "project_id": "eggtofirebase",
+    "storage_bucket": "eggtofirebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289456279446:android:e3ca72f74d5af5a84e97b7",
+        "android_client_info": {
+          "package_name": "com.bahade1233.TheSmartHelmet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5pSuGH4HPpPTAIAPgna3iP_9EwDck7ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,7 +21,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bahade1233.TheSmartHelmet"
     },
     "android": {
       "adaptiveIcon": {

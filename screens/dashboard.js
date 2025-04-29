@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { LineChart, PieChart } from 'react-native-chart-kit';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/Ionicons';
-import BottomTab from '../components/bottom-tab';
+import React from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { LineChart, PieChart } from "react-native-chart-kit";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Icon from "react-native-vector-icons/Ionicons";
+import BottomTab from "../components/bottom-tab";
 
 const Dashboard = () => {
   // Example data for charts
   const lineChartData = {
-    labels: ['00:00', '00:10', '00:20', '00:30', '00:40', '00:50', '01:00'],
+    labels: ["00:00", "00:10", "00:20", "00:30", "00:40", "00:50", "01:00"],
     datasets: [
       {
         data: [40, 60, 80, 60, 70, 50, 90],
@@ -24,13 +24,31 @@ const Dashboard = () => {
   };
 
   const pieChartData = [
-    { name: 'θ (theta rhythm)', percentage: 15, color: '#FFA07A', legendFontColor: '#333', legendFontSize: 12 },
-    { name: 'α (alpha rhythm)', percentage: 35, color: '#87CEFA', legendFontColor: '#333', legendFontSize: 12 },
-    { name: 'β (beta rhythm)', percentage: 50, color: '#FFD700', legendFontColor: '#333', legendFontSize: 12 },
+    {
+      name: "θ (theta rhythm)",
+      percentage: 15,
+      color: "#FFA07A",
+      legendFontColor: "#333",
+      legendFontSize: 12,
+    },
+    {
+      name: "α (alpha rhythm)",
+      percentage: 35,
+      color: "#87CEFA",
+      legendFontColor: "#333",
+      legendFontSize: 12,
+    },
+    {
+      name: "β (beta rhythm)",
+      percentage: 50,
+      color: "#FFD700",
+      legendFontColor: "#333",
+      legendFontSize: 12,
+    },
   ];
 
   const concentrationData = {
-    labels: [''],
+    labels: [""],
     datasets: [
       {
         data: [10, 30, 20, 40, 50, 30, 70, 40],
@@ -89,14 +107,14 @@ const Dashboard = () => {
       </ScrollView>
 
       {/* Footer Navigation */}
-      <BottomTab activeTab="Dashboard"/>
+      <BottomTab activeTab="Dashboard" />
     </SafeAreaView>
   );
 };
 
 const chartConfig = {
-  backgroundGradientFrom: '#fff',
-  backgroundGradientTo: '#fff',
+  backgroundGradientFrom: "#fff",
+  backgroundGradientTo: "#fff",
   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   strokeWidth: 2, // optional, default 3
@@ -106,40 +124,40 @@ const chartConfig = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginVertical: 10,
   },
   date: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   sectionTitle: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     marginVertical: 10,
     marginLeft: 40,
   },
   chart: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginVertical: 10,
   },
   stateText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginVertical: 10,
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     paddingVertical: 20,
-    backgroundColor: '#FFD700',
+    backgroundColor: "#FFD700",
   },
 });
 
